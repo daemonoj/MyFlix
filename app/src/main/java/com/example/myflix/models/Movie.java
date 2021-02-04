@@ -3,21 +3,28 @@ package com.example.myflix.models;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Parcel
 public class Movie {
     String title;
     String posterPath;
     String overview;
     String backdropPath;
+    double rating;
+
+    // for parceler library
+    public Movie(){    }
 
     public Movie(JSONObject jsonObject) throws JSONException {
         this.posterPath = jsonObject.getString("poster_path");
         this.title = jsonObject.getString("title");
         this.overview = jsonObject.getString("overview");
         this.backdropPath = jsonObject.getString("backdrop_path");
+        this.rating = jsonObject.getDouble("vote_average");
     }
 
     public static List<Movie> fromJSONArray (JSONArray movieJSONArray) throws JSONException {
@@ -42,5 +49,9 @@ public class Movie {
 
     public String getBackdropPath() {
         return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
+    }
+
+    public double getRating() {
+        return rating;
     }
 }
