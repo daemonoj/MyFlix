@@ -14,6 +14,7 @@ public class Movie {
     String posterPath;
     String overview;
     String backdropPath;
+    int id;
     double rating;
 
     // for parceler library
@@ -25,6 +26,7 @@ public class Movie {
         this.overview = jsonObject.getString("overview");
         this.backdropPath = jsonObject.getString("backdrop_path");
         this.rating = jsonObject.getDouble("vote_average");
+        this.id = jsonObject.getInt("id");
     }
 
     public static List<Movie> fromJSONArray (JSONArray movieJSONArray) throws JSONException {
@@ -53,5 +55,9 @@ public class Movie {
 
     public double getRating() {
         return rating;
+    }
+
+    public int getId() {
+        return id;
     }
 }
